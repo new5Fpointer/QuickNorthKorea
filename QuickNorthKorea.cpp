@@ -105,7 +105,7 @@ QuickNorthKorea::QuickNorthKorea(QWidget *parent)
     WindowShowAnimation->setEndValue(desktop);
     WindowShowAnimation->setEasingCurve(QEasingCurve::InOutExpo);
 
-    // ParallelAnimationGroup
+    // SequentialAnimationGroup
     FullScreenWidgetShowAnimationGroup = new QSequentialAnimationGroup;
     FullScreenWidgetShowAnimationGroup->addAnimation(FullScreenWidgetShowAnimation);
     FullScreenWidgetShowAnimationGroup->addAnimation(FullScreenSpeechLabelShowAnimation);

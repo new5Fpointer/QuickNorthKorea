@@ -1,5 +1,5 @@
 # 一键恩情
-![image](https://longlonger2022.github.io/img/Icon/QuickNorthKorea.512px.png)
+![image](https://longlonger2022.github.io/img/Icon/QuickNorthKorea_icon.512px.png)
 
 ---
 

@@ -45,6 +45,7 @@ private:
 
     // Labels
     QLabel* FullScreenNationalFlagLabel; // 全屏国家旗帜
+    QLabel* FullScreenSpeechUnderlyingLabel; // 演讲画面背景
     QLabel* FullScreenSpeechLabel; // 演讲画面
     QLabel* FullScreenDisclaimerLabel; // 全屏画面免责声明
     QLabel* NationalFlagLabel; // 国家旗帜

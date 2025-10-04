@@ -30,7 +30,7 @@ QuickNorthKorea::QuickNorthKorea(QWidget *parent)
     trayIcon->setIcon(QIcon("img/QuickNorthKorea_icon.png"));
     trayIcon->setToolTip("一键恩情");
     // Actions
-    QAction* ExitAction = new QAction("退出", this);
+    QAction* ExitAction = new QAction("Stop Kim!", this);
     // Menu
     QMenu* Menu = new QMenu(this);
     Menu->addAction(ExitAction);
@@ -56,7 +56,10 @@ QuickNorthKorea::QuickNorthKorea(QWidget *parent)
     FullScreenNationalFlagLabel->setScaledContents(true);
     FullScreenNationalFlagLabel->setAlignment(Qt::AlignCenter);
     FullScreenNationalFlagLabel->show();
-    FullScreenSpeechLabel = new QLabel(FullScreenWidget);
+    FullScreenSpeechUnderlyingLabel = new QLabel(FullScreenWidget);
+    FullScreenSpeechUnderlyingLabel->setGeometry(desktop);
+    FullScreenSpeechUnderlyingLabel->show();
+    FullScreenSpeechLabel = new QLabel(FullScreenSpeechUnderlyingLabel);
     FullScreenSpeechLabel->setGeometry(desktop);
     FullScreenSpeechLabel->setMovie(SpeechMovie);
     FullScreenSpeechLabel->setAlignment(Qt::AlignCenter);
@@ -85,10 +88,10 @@ QuickNorthKorea::QuickNorthKorea(QWidget *parent)
     FullScreenWidgetShowAnimation->setStartValue(QRect(0, 0, 0, desktop.height()));
     FullScreenWidgetShowAnimation->setEndValue(desktop);
     FullScreenWidgetShowAnimation->setEasingCurve(QEasingCurve::InCubic);
-    FullScreenSpeechLabelShowAnimation = new QPropertyAnimation(FullScreenSpeechLabel, "pos");
+    FullScreenSpeechLabelShowAnimation = new QPropertyAnimation(FullScreenSpeechUnderlyingLabel, "geometry");
     FullScreenSpeechLabelShowAnimation->setDuration(1000);
-    FullScreenSpeechLabelShowAnimation->setStartValue(QPoint(-desktop.width(), 0));
-    FullScreenSpeechLabelShowAnimation->setEndValue(QPoint(0, 0));
+    FullScreenSpeechLabelShowAnimation->setStartValue(QRect(0, 0, 0, desktop.height()));
+    FullScreenSpeechLabelShowAnimation->setEndValue(desktop);
     FullScreenSpeechLabelShowAnimation->setEasingCurve(QEasingCurve::OutCubic);
     FullScreenWidgetWaitAnimation = new QPropertyAnimation(FullScreenWidget, "windowOpacity");
     FullScreenWidgetWaitAnimation->setDuration(4250);

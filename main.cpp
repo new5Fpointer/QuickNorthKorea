@@ -1,7 +1,7 @@
-﻿#include "QuickNorthKorea.h"
-#include <QtWidgets/QApplication>
+#include "QuickNorthKorea.h"
+#include <QApplication>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     QApplication a(argc, argv);
     QuickNorthKorea w;

@@ -1,33 +1,32 @@
-﻿#include "QuickNorthKorea.h"
+#include "QuickNorthKorea.h"
 
-QuickNorthKorea::QuickNorthKorea(QWidget *parent)
+QuickNorthKorea::QuickNorthKorea(QWidget* parent)
     : QWidget(parent)
 {
-    ui.setupUi(this);
-    desktop = QApplication::desktop()->screenGeometry();
+    desktop = QGuiApplication::primaryScreen()->geometry();
     this->setGeometry(desktop);
-    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnBottomHint | Qt::Tool);
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
     this->setAttribute(Qt::WA_TranslucentBackground);
     this->setWindowTitle(QString::fromUtf8("一键恩情"));
-    this->setWindowIcon(QIcon("img/QuickNorthKorea_icon.png"));
+    this->setWindowIcon(QIcon(":/QuickNorthKorea/img/QuickNorthKorea_icon.png"));
     this->setFont(QFont("Microsoft YaHei Ui", QFont::Bold));
     this->hide();
 
     // Sounds
     SpeechSoundEffect = new QSoundEffect();
-    SpeechSoundEffect->setSource(QUrl::fromLocalFile("sounds/speech.wav"));
+    SpeechSoundEffect->setSource(QUrl::fromLocalFile(":/QuickNorthKorea/sounds/speech.wav"));
     SpeechSoundEffect->setLoopCount(1);
     BgmSoundEffect = new QSoundEffect();
-    BgmSoundEffect->setSource(QUrl::fromLocalFile("sounds/bgm.wav"));
+    BgmSoundEffect->setSource(QUrl::fromLocalFile(":/QuickNorthKorea/sounds/bgm.wav"));
     BgmSoundEffect->setLoopCount(QSoundEffect::Infinite);
 
     // Movies
-    SpeechMovie = new QMovie("img/speech.gif");
+    SpeechMovie = new QMovie(":/QuickNorthKorea/img/speech.gif");
     SpeechMovie->setSpeed(114);
 
     // SystemTrayIcon
     trayIcon = new QSystemTrayIcon(this);
-    trayIcon->setIcon(QIcon("img/QuickNorthKorea_icon.png"));
+    trayIcon->setIcon(QIcon(":/QuickNorthKorea/img/QuickNorthKorea_icon.png"));
     trayIcon->setToolTip("一键恩情");
     // Actions
     QAction* ExitAction = new QAction("Stop Kim!", this);
@@ -45,14 +44,13 @@ QuickNorthKorea::QuickNorthKorea(QWidget *parent)
     FullScreenWidget->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
     FullScreenWidget->setAttribute(Qt::WA_TranslucentBackground);
     FullScreenWidget->setWindowTitle(QString::fromUtf8("一键恩情 - 全屏界面"));
-    FullScreenWidget->setWindowIcon(QIcon("img/QuickNorthKorea_icon.png"));
+    FullScreenWidget->setWindowIcon(QIcon(":/QuickNorthKorea/img/QuickNorthKorea_icon.png"));
     FullScreenWidget->setFont(QFont("Microsoft YaHei Ui", QFont::Bold));
     FullScreenWidget->show();
 
     // Labels
     FullScreenNationalFlagLabel = new QLabel(FullScreenWidget);
-    FullScreenNationalFlagLabel->setGeometry(desktop);
-    FullScreenNationalFlagLabel->setPixmap(QPixmap("img/KP.png"));
+    FullScreenNationalFlagLabel->setPixmap(QPixmap(":/QuickNorthKorea/img/KP.png"));
     FullScreenNationalFlagLabel->setScaledContents(true);
     FullScreenNationalFlagLabel->setAlignment(Qt::AlignCenter);
     FullScreenNationalFlagLabel->show();
@@ -72,7 +70,7 @@ QuickNorthKorea::QuickNorthKorea(QWidget *parent)
     FullScreenDisclaimerLabel->show();
     NationalFlagLabel = new QLabel(this);
     NationalFlagLabel->setGeometry(desktop);
-    NationalFlagLabel->setPixmap(QPixmap("img/KP.png"));
+    NationalFlagLabel->setPixmap(QPixmap(":/QuickNorthKorea/img/KP.png"));
     NationalFlagLabel->setScaledContents(true);
     NationalFlagLabel->setAlignment(Qt::AlignCenter);
     NationalFlagLabel->hide();
@@ -123,11 +121,20 @@ QuickNorthKorea::QuickNorthKorea(QWidget *parent)
         SpeechSoundEffect->play();
         });
     connect(FullScreenWidgetHideAnimation, &QPropertyAnimation::finished, [&] {
+        this->raise();
+        this->activateWindow();
         this->show();
         NationalFlagLabel->show();
+
+        QMetaObject::invokeMethod(this, [this] {
+            QRect r = QGuiApplication::primaryScreen()->geometry();
+            NationalFlagLabel->setGeometry(r);
+            }, Qt::QueuedConnection);
+
         BgmSoundEffect->play();
         });
 }
 
 QuickNorthKorea::~QuickNorthKorea()
-{}
+{
+}

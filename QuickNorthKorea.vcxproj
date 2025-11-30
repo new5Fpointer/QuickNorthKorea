@@ -36,12 +36,12 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>5.12.12_msvc2017_64</QtInstall>
+    <QtInstall>6.9.3_msvc2022_64</QtInstall>
     <QtModules>core;gui;multimedia;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
-    <QtInstall>5.12.12_msvc2017_64</QtInstall>
+    <QtInstall>6.9.3_msvc2022_64</QtInstall>
     <QtModules>core;gui;multimedia;widgets</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
   </PropertyGroup>
@@ -103,7 +103,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <QtRcc Include="QuickNorthKorea.qrc" />
-    <QtUic Include="QuickNorthKorea.ui" />
     <QtMoc Include="QuickNorthKorea.h" />
     <ClCompile Include="QuickNorthKorea.cpp" />
     <ClCompile Include="main.cpp" />

@@ -26,9 +26,6 @@
     <QtRcc Include="QuickNorthKorea.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-    <QtUic Include="QuickNorthKorea.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
     <QtMoc Include="QuickNorthKorea.h">
       <Filter>Header Files</Filter>
     </QtMoc>

@@ -1,4 +1,9 @@
 <RCC>
-    <qresource prefix="QuickNorthKorea">
+    <qresource prefix="/QuickNorthKorea">
+        <file>img/KP.png</file>
+        <file>img/QuickNorthKorea_icon.png</file>
+        <file>img/speech.gif</file>
+        <file>sounds/bgm.wav</file>
+        <file>sounds/speech.wav</file>
     </qresource>
 </RCC>

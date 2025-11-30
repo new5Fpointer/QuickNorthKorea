@@ -50,6 +50,7 @@ QuickNorthKorea::QuickNorthKorea(QWidget* parent)
 
     // Labels
     FullScreenNationalFlagLabel = new QLabel(FullScreenWidget);
+    FullScreenNationalFlagLabel->setGeometry(desktop);
     FullScreenNationalFlagLabel->setPixmap(QPixmap(":/QuickNorthKorea/img/KP.png"));
     FullScreenNationalFlagLabel->setScaledContents(true);
     FullScreenNationalFlagLabel->setAlignment(Qt::AlignCenter);
@@ -125,12 +126,6 @@ QuickNorthKorea::QuickNorthKorea(QWidget* parent)
         this->activateWindow();
         this->show();
         NationalFlagLabel->show();
-
-        QMetaObject::invokeMethod(this, [this] {
-            QRect r = QGuiApplication::primaryScreen()->geometry();
-            NationalFlagLabel->setGeometry(r);
-            }, Qt::QueuedConnection);
-
         BgmSoundEffect->play();
         });
 }
